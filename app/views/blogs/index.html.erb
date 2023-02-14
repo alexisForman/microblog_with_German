@@ -1,0 +1,12 @@
+<h1>Blogs</h1>
+
+<% @blogs.each do |blog| %>
+    <h2><%= blog.title %></h2>
+    <p><%= blog.content %></p>
+
+    <div>
+    <%= link_to edit_blog_path(blog) do %>
+        <img src=<%= blog.image_path %>>
+    <% end %>
+    </div>
+    <% end %>
