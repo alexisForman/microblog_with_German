@@ -21,6 +21,11 @@
 </div>
 
 <div>
+    <%= form.label :category_ids %>
+    <%= form.collection_select(:category_ids, Category.all, :id, :name, {} ) %>
+</div>
+
+<div>
 <%= form.submit %>
 </div>
 

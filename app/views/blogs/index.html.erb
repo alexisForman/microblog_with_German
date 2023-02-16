@@ -5,7 +5,7 @@
     <p><%= blog.content %></p>
 
     <div>
-    <%= link_to edit_blog_path(blog) do %>
+    <%= link_to blog_path(blog) do %>
         <img src=<%= blog.image_path %>>
     <% end %>
     </div>

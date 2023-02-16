@@ -1,4 +1,6 @@
 class BlogsController < ApplicationController
+    before_action :set_blog, only: [:show, :edit, :update, :destroy]
+
     def index
         @blogs = Blog.all
     end
@@ -12,7 +14,7 @@ class BlogsController < ApplicationController
 
         if @blog.save
             flash[:notice] = "Blog successfully saved!"
-            redirect_to blogs_path
+            redirect_to @blog
         else
             flash[:notice] = "There was an error when attempting to save this blog."
             render :new, status: :unprocessable_entity
@@ -20,11 +22,11 @@ class BlogsController < ApplicationController
     end
 
     def edit
-        @blog = Blog.find(params[:id])
+      
     end
 
     def update
-        @blog = Blog.find(params[:id])
+       
         if @blog.update(blog_params)
             redirect_to blogs_path
         else
@@ -32,10 +34,23 @@ class BlogsController < ApplicationController
         end
     end
 
+    def show
+      
+    end
+
+    def destroy
+        @blog.destroy
+        redirect_to blogs_path
+    end
+
     #THIS MUST STAY AT THE BOTTOM
     private
     def blog_params
-        params.require(:blog).permit(:title, :content, :image_path)
+        params.require(:blog).permit(:title, :content, :image_path, :category_ids)
+    end
+
+    def set_blog
+        @blog = Blog.find(params[:id])
     end
 end
 
